@@ -105,3 +105,12 @@ li a:hover .fas
     font-weight: bold;
     color: #000;
 }
+
+/*Scroll up button css*/
+#btn-up {
+    display: none;
+    position: fixed;
+    right: 50px;
+    bottom: 40px;
+    z-index: 99;
+}
