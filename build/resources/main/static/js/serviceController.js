@@ -1,4 +1,4 @@
-const createHTMLList = (index, name, description, imageUrl) =>
+const createHTMLList = (index, name, price, imageUrl) =>
 `
     <div class="col-md-4">
         <a id="${index}" href="#" data-bs-toggle="modal" data-bs-target="#serviceModal">
@@ -6,7 +6,7 @@ const createHTMLList = (index, name, description, imageUrl) =>
                 <img class="img-fluid" src=${imageUrl} alt="">
                 <div class="card-body">
                     <h5 class="card-title">${name}</h5>
-                    <p class="card-text">${description}</p>
+                    <p class="card-text">from $${price}</p>
                 </div>
             </div>
         </a>
@@ -20,7 +20,7 @@ function displayServiceDetails(item){
     document.getElementById('itemName').innerText = item.name;
     document.getElementById('itemDescription').innerText = item.description;
     document.getElementById('itemImage').src = item.imageUrl;
-    document.getElementById('itemPrice').innerText = item.price;
+    document.getElementById('itemPrice').innerText = "from $" + item.price;
 
 } //End of displayServiceDetails function
 
@@ -105,7 +105,7 @@ class Service {
         for (let i = 0; i < this.serviceItems.length; i++) {
             const item = this.serviceItems[i];
 
-            const productHTML = createHTMLList(i, item.name, item.description, item.imageUrl);
+            const productHTML = createHTMLList(i, item.name, item.price, item.imageUrl);
 
             productHTMLList.push(productHTML);
         }
