@@ -21,71 +21,76 @@
   </head>
   <body>
 
-  <header>
-      <!-- Navbar -->
-      <!-- insert navbar -->
-      <div th:insert="fragments/navbar.html :: navbar"></div>
-      <!-- Navbar end -->
-  </header>
+  <div class="container-upload">
 
-    <main>
-        <div class="container">
-            <div class="row">
+      <header>
+          <!-- Navbar -->
+          <!-- insert navbar -->
+          <div th:insert="fragments/navbar.html :: navbar"></div>
+          <!-- Navbar end -->
+      </header>
 
-                <!-- left side main bg pic -->
-                <div class="col-lg-6">
-                    <img src="./images/dog-01-sq.jpg" class="img-fluid" alt="Dog">
+        <main>
+            <div class="container">
+                <div class="row">
 
-
-                </div>
-
-                <!-- right side upload panel -->
-                <div class="col-lg-6">
-                    <!-- form -->
-                    <form id="newItemForm" enctype="multipart/form-data" class="m-3">
-
-                        <!-- service input -->
-                        <div class="mb-3">
-                            <label for="newItemNameInput" class="form-label">Service Name :</label>
-                            <input type="text" class="form-control" id="newItemNameInput">
-                        </div>
-
-                        <!-- description input -->
-                        <div class="mb-3">
-                            <label for="newItemDescription" class="form-label">Description :</label>
-                            <textarea class="form-control" placeholder="Description" id="newItemDescription" rows="3"></textarea>
-                        </div>
-
-                        <!-- file input -->
-                        <div class="mb-3">
-                            <label for="newItemImageFile" class="form-label">Upload Image :</label>
-                            <input class="form-control" type="file" id="newItemImageFile">
-                        </div>
-
-                        <!-- price input -->
-<!--                        <div class="mb-3">-->
-<!--                            <label for="newItemPrice" class="form-label">Price :</label>-->
-<!--                            <div class="input-group mb-3">-->
-<!--                                <span class="input-group-text">S$</span>-->
-<!--                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="newItemPrice">-->
-<!--                                <span class="input-group-text">.00</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div class="mb-3">
-                            <label for="newItemPrice" class="form-label">Price :</label>
-                            <input type="text" class="form-control" id="newItemPrice">
-                        </div>
+                    <!-- left side main bg pic -->
+                    <div class="col-lg-6">
+                        <img src="./images/dog-01-sq.jpg" class="img-fluid" alt="Dog">
 
 
+                    </div>
 
-                        <!-- submit and clear button -->
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-outline-secondary" value="Reset Form">Clear</button>
+                    <!-- right side upload panel -->
+                    <div class="col-lg-6">
+                        <!-- form -->
+                        <form id="newItemForm" enctype="multipart/form-data" class="m-3">
 
-                    </form>
+                            <!-- service input -->
+                            <div class="mb-3">
+                                <label for="newItemNameInput" class="form-label">Service Name :</label>
+                                <input type="text" class="form-control" id="newItemNameInput">
+                            </div>
+
+                            <!-- description input -->
+                            <div class="mb-3">
+                                <label for="newItemDescription" class="form-label">Description :</label>
+                                <textarea class="form-control" placeholder="Description" id="newItemDescription" rows="3"></textarea>
+                            </div>
+
+                            <!-- file input -->
+                            <div class="mb-3">
+                                <label for="newItemImageFile" class="form-label">Upload Image :</label>
+                                <input class="form-control" type="file" id="newItemImageFile">
+                            </div>
+
+                            <!-- price input -->
+    <!--                        <div class="mb-3">-->
+    <!--                            <label for="newItemPrice" class="form-label">Price :</label>-->
+    <!--                            <div class="input-group mb-3">-->
+    <!--                                <span class="input-group-text">S$</span>-->
+    <!--                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="newItemPrice">-->
+    <!--                                <span class="input-group-text">.00</span>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+                            <div class="mb-3">
+                                <label for="newItemPrice" class="form-label">Price :</label>
+                                <input type="text" class="form-control" id="newItemPrice">
+                            </div>
 
 
-                    <!-- end of form-->
+
+                            <!-- submit and clear button -->
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn btn-outline-secondary" value="Reset Form">Clear</button>
+
+                        </form>
+
+
+                        <!-- end of form-->
+
+
+                    </div>
 
 
                 </div>
@@ -94,17 +99,14 @@
             </div>
 
 
-        </div>
+        </main>
 
 
-    </main>
-
-
-  <!-- footer -->
-  <!-- insert footer -->
-  <div th:insert="fragments/footer.html :: footer"></div>
-  <!-- footer end -->
-
+      <!-- footer -->
+      <!-- insert footer -->
+      <div th:insert="fragments/footer.html :: footer"></div>
+      <!-- footer end -->
+  </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
