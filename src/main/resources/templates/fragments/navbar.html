@@ -28,15 +28,18 @@
                 <li class="nav-item">
                     <a class="nav-link px-3" aria-current="page" th:href="@{service}"><i class="fas fa-paw"></i> SERVICES</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" aria-current="page" th:href="@{form-upload-product}"><i class="fas fa-paw"></i> UPLOAD</a>
-                </li>
 
 
 
                 <div sec:authorize="isAnonymous()">
                     <li class="nav-item">
                         <a class="nav-link px-3" aria-current="page" th:href="@{form-login}"><i class="fas fa-paw"></i> LOGIN</a>
+                    </li>
+                </div>
+
+                <div sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" aria-current="page" th:href="@{form-upload-product}"><i class="fas fa-paw"></i> UPLOAD</a>
                     </li>
                 </div>
 
