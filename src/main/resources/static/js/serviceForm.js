@@ -11,17 +11,6 @@ newItemForm.addEventListener('submit', (event) => {
     const newItemImageUrl = document.querySelector('#newItemImageFile');
     const newItemPrice = document.querySelector('#newItemPrice');
 
-    // Validation
-    if (storeImage.size > max_size) {
-        alert("Please upload image less than 1MB")
-        return false;
-    }
-
-    if (isNaN(newItemPrice.value) || newItemPrice.value < 0) {
-        alert("Please enter valid price!")
-        return false;
-    }
-
 
     const name = newItemNameInput.value;
     const description = newItemDescription.value;
@@ -39,7 +28,15 @@ newItemForm.addEventListener('submit', (event) => {
 
 
 const input = document.querySelector('#newItemImageFile');
-
 input.addEventListener('change', () => {
     storeImage = input.files[0];
+        console.log(storeImage);
+
+    if (storeImage.size > max_size) {
+        document.querySelector('#newItemImageFile').setCustomValidity("File must not exceed 1MB!");
+        document.querySelector('#newItemImageFile').reportValidity();
+    } else {
+        document.querySelector('#newItemImageFile').setCustomValidity("");
+        document.querySelector('#newItemImageFile').reportValidity();
+    }
 });
