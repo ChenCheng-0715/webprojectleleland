@@ -68,6 +68,10 @@ li a.active{
     padding: 2rem;
 }
 
+.main-content-box h1 {
+    font-family: 'Fredoka', sans-serif;
+}
+
 /* Our shop css */
 .our-shop {
     background: rgb(232,232,232);
@@ -101,12 +105,12 @@ li a.active{
 
 /* Testimonial css */
 .testimonial{
-    width: 60%;
+    max-width: 70%;
     margin: 0 auto;
     padding: 1.5rem;
     text-align: center;
     background: rgb(47,112,21);
-background: linear-gradient(346deg, rgba(47,112,21,1) 39%, rgba(92,162,91,1) 66%);
+    background: linear-gradient(346deg, rgba(47,112,21,1) 39%, rgba(92,162,91,1) 66%);
     color: #ebebeb;
     border-radius: 0 50px 0px;
 }
@@ -242,17 +246,17 @@ background: linear-gradient(346deg, rgba(47,112,21,1) 39%, rgba(92,162,91,1) 66%
 }
 
 
-@media screen and (max-width: 496px) {
+@media screen and (max-width: 500px) {
     .main-content-box{
         padding: 1rem;
     }
 
     .main-content-box h1{
-      font-size: 11px;
+      font-size: 14px;
     }
 
     .main-content-box p{
-        font-size: 8px;
+        display: none;
       }
 
       .btn-main{
@@ -260,13 +264,16 @@ background: linear-gradient(346deg, rgba(47,112,21,1) 39%, rgba(92,162,91,1) 66%
         padding: 5px;
     }
 
-    /*.tagline-bg{
-       max-width: 45%;
-       height: auto;*/
-       /*top: 0;*/
+     .testimonial {
+                max-width: 90%;
+
     }
 
-    @media screen and (max-width: 366px) {
+    @media screen and (max-width: 398px) {
+
+        .main-content p {
+            display: none;
+        }
         .main-content-box{
             padding: 1rem;
         }
@@ -282,6 +289,11 @@ background: linear-gradient(346deg, rgba(47,112,21,1) 39%, rgba(92,162,91,1) 66%
           .btn-main{
             font-size: 6px;
             padding: 3px;
+            margin-top: -20px;
+        }
+
+        .testimonial {
+            max-width: 90%;
         }
 }
 
