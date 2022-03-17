@@ -7,20 +7,32 @@ const hourList = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00
 
 function serviceReservation() {
 
-    petType = document.querySelector('#petType').value;
-    apptDate = document.querySelector('#apptDate').value;
-    apptTime = document.querySelector('#apptTime').value;
+    const serviceName = document.querySelector('#itemName').innerText;
+    const petType = document.querySelector('#petType').value;
+    const apptDate = document.querySelector('#apptDate').value;
+    const apptTime = document.querySelector('#apptTime').value;
+    const email = document.querySelector('#emailInput').value;
 
-    const bookingDetails = {
-        petType: petType,
-        apptDate: apptDate,
-        apptTime: apptTime
+    const form = document.querySelector('.serviceDetail');
+
+    if(validateEmail(email)) {
+
+        const bookingDetails = {
+                serviceName: serviceName,
+                petType: petType,
+                apptDate: apptDate,
+                apptTime: apptTime,
+                email: email
+            }
+
+            bookingReservationList.push(bookingDetails);
+            console.log(bookingReservationList);
+
+            alert("Thank you for your submission");
+
+            form.reset();
+
     }
-
-    bookingReservationList.push(bookingDetails);
-    console.log(bookingReservationList);
-
-    alert("Thank you for your submission");
     
 }
 
@@ -62,8 +74,8 @@ function setDate() {
     const todayDate = `${minYear}-${minMonth}-${minDay}`;
     const futureDate = `${maxYear}-${maxMonth}-${maxDay}`;
 
-    console.log(todayDate);
-    console.log(futureDate);
+    //console.log(todayDate);
+    //console.log(futureDate);
     
     //SetAttribute on booking form
     document.querySelector('#apptDate').setAttribute("min", todayDate);
@@ -88,3 +100,15 @@ function displayHour() {
 }
 
 displayHour();
+
+function validateEmail(input) {
+
+    const validFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(input.match(validFormat)) {
+        return true;
+    }
+    else {
+        alert("Invalid email address!");
+        return false;
+    }
+}
