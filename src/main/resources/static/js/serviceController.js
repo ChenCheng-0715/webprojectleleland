@@ -120,4 +120,102 @@ class Service {
         }
 
     }
+
+
+    // use at upload page service management
+    showService() {
+        let service = this;
+        service.serviceItems = [];
+
+        fetch('https://lelelandccversion.herokuapp.com/item/all')
+            .then((resp) => resp.json())
+            .then(function(data) {
+                console.log("2. receive data");
+                console.log(data);
+                data.forEach(function (item, index) {
+
+                    const itemObj = {
+                        id: item.id,
+                        name: item.name,
+                        description: item.description,
+                        imageUrl: item.imageUrl,
+                        price: item.price
+                    };
+
+                    service.serviceItems.push(itemObj);
+                });
+
+                service.showTable();
+
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+    }
+
+    // use at upload page service management, to loop data received from db and display in table
+    showTable() {
+        let tableHTMLList = [];
+        let index = 0;
+        let deleteBtnId = "";
+
+        for (let i = 0; i < this.serviceItems.length; i++) {
+            const item = this.serviceItems[i];
+            deleteBtnId = "delete" + index;
+
+            const tableHTML = `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.description}</td>
+                    <td><img src="${item.imageUrl}" class="img-fluid" width="300px"></td>
+                    <td>${item.price}</td>
+                    <td><button id="${deleteBtnId}" type="button" class="btn btn-danger">Delete</button></td>
+                </tr>
+            `;
+
+
+            tableHTMLList.push(tableHTML);
+            index++;
+        }
+
+        document.querySelector("#tbody").innerHTML = tableHTMLList.join('\n');
+
+
+        index = 0;
+        for (let i = 0; i < this.serviceItems.length; i++) {
+            const item = this.serviceItems[i];
+
+            console.log(item.id);
+
+            deleteBtnId = "delete" + index;
+            document.querySelector(`#${deleteBtnId}`).
+                    addEventListener("click", function(){deleteService(item.id);});
+
+            index++;
+        }
+    }
+
+
+
 } //End of Service Class
+
+
+function deleteService(id) {
+
+    let deleteUrl = "https://lelelandccversion.herokuapp.com/item/" + id;
+    fetch(deleteUrl, {
+        method: 'DELETE',
+        })
+        .then(function(response) {
+            console.log(response.status);
+            if (response.ok) {
+                alert("Successful Delete");
+            }
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+            alert("Error delete");
+        });
+}
