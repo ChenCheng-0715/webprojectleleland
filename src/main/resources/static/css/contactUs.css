@@ -26,14 +26,35 @@ p {
     justify-content: space-evenly;
 }
 
+#services > p {
+    line-height: 1.8;
+}
+
+#business > a {
+    color: white;
+    line-height: 2;
+}
+
+#services > a, #wellness > a {
+    color: #fff;
+}
+
+#services > a > h5, #wellness > a > h5, #business > h5 {
+    background-color: #01730d;
+    padding: .5rem;
+}
+#services > a > h5, #wellness > a > h5 {
+    margin-right: .5rem;
+}
+
 /* Second section CSS */
 #location>p,
 #contactNumber>p,
-#email>p {
+#contactEmail>p {
     text-align: center;
 }
 
-#contactIcon {
+.contactIcon {
     font-size: 60px;
     margin-bottom: 1rem;
 }
@@ -108,24 +129,29 @@ p {
 
     #location>p,
     #contactNumber>p,
-    #email>p {
+    #contactEmail>p {
         text-align: center;
     }
 
-    #contactIcon {
+    .contactIcon {
         margin-top: 1.5rem;
     }
 
-    #services>h5,
-    #wellness>h5,
+    #wellness>a>h5,
     #business>h5 {
         margin-top: 2rem;
     }
 
+     #services>a>h5,
+     #wellness>a>h5 {
+        margin-right: 0;
+     }
+
+
     #enquiries {
         background-color: rgb(29, 63, 63);
         margin-top: 2rem;
-        padding: 2rem 0;
+        padding: 0 0 2rem 0;
     }
 
     #contact {
