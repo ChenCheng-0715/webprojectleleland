@@ -14,3 +14,16 @@ main
 {
     flex: 1;
 }
+
+.servicetable
+{
+    padding: 50px;
+}
+
+@media only screen and (max-width: 720px) {
+
+    #svcmnt
+    {
+        display: none;
+    }
+}
