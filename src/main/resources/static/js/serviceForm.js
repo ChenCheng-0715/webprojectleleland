@@ -1,5 +1,6 @@
 const service = new Service();
 let storeImage = "";
+const max_size = 1*1024*1024;  // 1MB
 
 
 newItemForm.addEventListener('submit', (event) => {
@@ -11,6 +12,16 @@ newItemForm.addEventListener('submit', (event) => {
     const newItemPrice = document.querySelector('#newItemPrice');
 
     // Validation
+    if (storeImage.size > max_size) {
+        alert("Please upload image less than 1MB")
+        return false;
+    }
+
+    if (isNaN(newItemPrice.value) || newItemPrice.value < 0) {
+        alert("Please enter valid price!")
+        return false;
+    }
+
 
     const name = newItemNameInput.value;
     const description = newItemDescription.value;
