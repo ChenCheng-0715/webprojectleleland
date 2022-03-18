@@ -120,6 +120,25 @@ function loadTable() {
 
 loadTable();
 
+//Scroll to top function
+let buttonUp = document.querySelector("#btn-up");
+
+window.onscroll = function() { scrollFunction()};
+//Set scroll top button appear when screen body greater than 600px
+function scrollFunction() {
+    if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+        buttonUp.style.display = "block";
+    } else {
+        buttonUp.style.display = "none";
+    }
+}
+//Click button to scroll up to top
+function topFunction() {
+    document.documentElement.scrollTop = 0;
+}
+
+
+
 // Count the number of character in the service name
 let formCharNum = document.querySelector("#serviceCharNum");
 let newItemNameInput = document.querySelector("#newItemNameInput");
