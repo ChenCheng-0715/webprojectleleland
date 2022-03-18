@@ -50,15 +50,15 @@
 
                         <!-- service input -->
                         <div class="mb-3">
-                            <label for="newItemNameInput" class="form-label">Service Name :</label>
-                            <input type="text" class="form-control" id="newItemNameInput" required>
+                            <label for="newItemNameInput" class="form-label">Service Name :</label><label for="serviceCharNum" class="charCount">Max Character: <span id="serviceCharNum">200</span></label>
+                            <input type="text" class="form-control" id="newItemNameInput" maxlength="200" required>
                         </div>
 
                         <!-- description input -->
                         <div class="mb-3">
-                            <label for="newItemDescription" class="form-label">Description :</label>
+                            <label for="newItemDescription" class="form-label">Description :</label><label for="descriptionCharNum" class="charCount">Max Character: <span id="descriptionCharNum">2000</span></label>
                             <textarea class="form-control" placeholder="Description" id="newItemDescription"
-                                      rows="3" required></textarea>
+                                      rows="3" maxlength="2000" required></textarea>
                         </div>
 
                         <!-- file input -->
@@ -207,7 +207,7 @@
 
 <script src="js/serviceController.js"></script>
 <script src="js/serviceForm.js"></script>
-
+<script src="js/frontEnd.js"></script>
 
 </body>
 </html>
