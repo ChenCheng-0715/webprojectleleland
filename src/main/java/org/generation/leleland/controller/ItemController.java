@@ -62,4 +62,25 @@ public class ItemController {
         this.itemService.save(new Item(itemDTO));
     }
 
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public void update(@PathVariable Integer id,
+                     @RequestParam(name="name", required = true) String name,
+                     @RequestParam(name="description", required = true) String description,
+                     @RequestParam(name="imageUrl", required = true) String imageUrl,
+                     @RequestParam(name="price", required = true) double price,
+                     @RequestParam("imageFile")MultipartFile multipartFile) throws IOException {
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
+
+        String fullPath = imageFolder + '/' + imageUrl;
+
+        Item item = this.itemService.findById(id);
+        item.setName(name);
+        item.setDescription(description);
+        item.setImageUrl(fullPath);
+        item.setPrice(price);
+        this.itemService.save(item);
+    }
 }

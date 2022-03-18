@@ -141,6 +141,55 @@
 
         </div>
 
+        <!-- Modal Box for Update Service -->
+        <div id="updateModal" class="modal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center align-items-center">
+
+                        <form id="updateItemForm" enctype="multipart/form-data" class="m-3">
+
+                            <!-- service input -->
+                            <div class="mb-3">
+                                <label for="updateItemNameInput" class="form-label">Service Name :</label>
+                                <input type="text" class="form-control" id="updateItemNameInput" required>
+                            </div>
+
+                            <!-- description input -->
+                            <div class="mb-3">
+                                <label for="updateItemDescription" class="form-label">Description :</label>
+                                <textarea class="form-control" placeholder="Description" id="updateItemDescription"
+                                          rows="3" required></textarea>
+                            </div>
+
+                            <!-- file input -->
+                            <div class="mb-3">
+                                <label for="updateItemImageFile" class="form-label">Upload Image :</label>
+                                <input class="form-control" type="file" id="updateItemImageFile" accept="image/*" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="updateItemPrice" class="form-label">Price :</label>
+                                <input type="number" class="form-control" id="updateItemPrice" min="0" step=".01" required>
+                            </div>
+
+
+
+                            <!-- submit and clear button -->
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn btn-outline-secondary" value="Reset Form">Clear</button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Modal Box for Update Service -->
+
 
     </main>
 
