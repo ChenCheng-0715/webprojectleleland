@@ -14,21 +14,6 @@ const createHTMLList = (index, name, price, imageUrl) =>
 
 `;
 
-const input1 = document.querySelector('#updateItemImageFile');
-input1.addEventListener('change', () => {
-    storeImage = input1.files[0];
-        console.log(storeImage);
-
-    if (storeImage != null) {
-        if (storeImage.size > max_size) {
-            document.querySelector('#updateItemImageFile').setCustomValidity("File must not exceed 1MB!");
-            document.querySelector('#updateItemImageFile').reportValidity();
-        } else {
-            document.querySelector('#updateItemImageFile').setCustomValidity("");
-            document.querySelector('#updateItemImageFile').reportValidity();
-        }
-    }
-});
 
 function displayServiceDetails(item){
 
@@ -241,6 +226,22 @@ function deleteService(id) {
 }
 
 function updateService(id) {
+
+    const input1 = document.querySelector('#updateItemImageFile');
+    input1.addEventListener('change', () => {
+        storeImage = input1.files[0];
+            console.log(storeImage);
+
+        if (storeImage != null) {
+            if (storeImage.size > max_size) {
+                document.querySelector('#updateItemImageFile').setCustomValidity("File must not exceed 1MB!");
+                document.querySelector('#updateItemImageFile').reportValidity();
+            } else {
+                document.querySelector('#updateItemImageFile').setCustomValidity("");
+                document.querySelector('#updateItemImageFile').reportValidity();
+            }
+        }
+    });
 
     updateItemForm.addEventListener('submit', (event) => {
         event.preventDefault();
