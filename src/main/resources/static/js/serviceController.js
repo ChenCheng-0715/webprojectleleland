@@ -14,6 +14,21 @@ const createHTMLList = (index, name, price, imageUrl) =>
 
 `;
 
+const input1 = document.querySelector('#updateItemImageFile');
+input1.addEventListener('change', () => {
+    storeImage = input1.files[0];
+        console.log(storeImage);
+
+    if (storeImage != null) {
+        if (storeImage.size > max_size) {
+            document.querySelector('#updateItemImageFile').setCustomValidity("File must not exceed 1MB!");
+            document.querySelector('#updateItemImageFile').reportValidity();
+        } else {
+            document.querySelector('#updateItemImageFile').setCustomValidity("");
+            document.querySelector('#updateItemImageFile').reportValidity();
+        }
+    }
+});
 
 function displayServiceDetails(item){
 
@@ -159,10 +174,12 @@ class Service {
         let tableHTMLList = [];
         let index = 0;
         let deleteBtnId = "";
+        let updateBtnId = "";
 
         for (let i = 0; i < this.serviceItems.length; i++) {
             const item = this.serviceItems[i];
             deleteBtnId = "delete" + index;
+            updateBtnId = "update" + index;
 
             const tableHTML = `
                 <tr>
@@ -171,6 +188,7 @@ class Service {
                     <td><img src="${item.imageUrl}" class="img-fluid" width="300px"></td>
                     <td>${item.price}</td>
                     <td><button id="${deleteBtnId}" type="button" class="btn btn-danger">Delete</button></td>
+                    <td><button id="${updateBtnId}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button></td>
                 </tr>
             `;
 
@@ -189,9 +207,11 @@ class Service {
             console.log(item.id);
 
             deleteBtnId = "delete" + index;
+            updateBtnId = "update" + index;
             document.querySelector(`#${deleteBtnId}`).
                     addEventListener("click", function(){deleteService(item.id);});
-
+            document.querySelector(`#${updateBtnId}`).
+                                addEventListener("click", function(){updateService(item.id);});
             index++;
         }
     }
@@ -218,4 +238,52 @@ function deleteService(id) {
             console.log('Error:', error);
             alert("Error delete");
         });
+}
+
+function updateService(id) {
+
+    updateItemForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        console.log(storeImage);
+
+        const updateItemNameInput = document.querySelector('#updateItemNameInput');
+        const updateItemDescription = document.querySelector('#updateItemDescription');
+        const updateItemImageUrl = document.querySelector('#updateItemImageFile');
+        const updateItemPrice = document.querySelector('#updateItemPrice');
+
+        const name = updateItemNameInput.value;
+        const description = updateItemDescription.value;
+        const imageUrl = updateItemImageUrl.value.replace("C:\\fakepath\\", "");
+        const price = updateItemPrice.value;
+
+        updateItemNameInput.value = '';
+        updateItemDescription.value = '';
+        updateItemImageUrl.value = '';
+        updateItemPrice.value = '';
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('imageUrl', imageUrl);
+    formData.append('price', price);
+    formData.append('imageFile', storeImage);
+
+    const updateUrl = "https://lelelandccversion.herokuapp.com/item/" + id;
+    fetch(updateUrl, {
+        method: 'PUT',
+        body: formData
+        })
+        .then(function(response) {
+            console.log(response.status);
+            if (response.ok) {
+                alert("Successfully Updated Service!")}
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert("Error updating service!")
+        });
+
+    });
 }
