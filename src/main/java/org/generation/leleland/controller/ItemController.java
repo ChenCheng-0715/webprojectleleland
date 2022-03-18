@@ -63,23 +63,28 @@ public class ItemController {
     }
 
     @CrossOrigin
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public void update(@PathVariable Integer id,
-                     @RequestParam(name="name", required = true) String name,
-                     @RequestParam(name="description", required = true) String description,
-                     @RequestParam(name="imageUrl", required = true) String imageUrl,
-                     @RequestParam(name="price", required = true) double price,
-                     @RequestParam("imageFile")MultipartFile multipartFile) throws IOException {
+                       @RequestParam(name="name", required = true) String name,
+                       @RequestParam(name="description", required = true) String description,
+                       @RequestParam(name="imageUrl", required = false) String imageUrl,
+                       @RequestParam(name="price", required = true) double price,
+                       @RequestParam(name="imageFile", required = false)MultipartFile multipartFile) throws IOException {
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
+        if(multipartFile != null) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
+        }
 
         String fullPath = imageFolder + '/' + imageUrl;
 
         Item item = this.itemService.findById(id);
         item.setName(name);
         item.setDescription(description);
-        item.setImageUrl(fullPath);
+
+        if(imageUrl != null) {
+            item.setImageUrl(fullPath);
+        }
         item.setPrice(price);
         this.itemService.save(item);
     }
