@@ -20,26 +20,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link px-3" aria-current="page" th:href="@{index}"><i class="fas fa-paw"></i> HOME</a>
+                    <a class="nav-link px-3" aria-current="page" th:href="@{index}"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/index' ? 'active':''}"><i
+                            class="fas fa-paw"></i> HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" aria-current="page" th:href="@{aboutus}"><i class="fas fa-paw"></i> ABOUT</a>
+                    <a class="nav-link px-3" aria-current="page" th:href="@{aboutus}"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/aboutus' ? 'active':''}"><i
+                            class="fas fa-paw"></i>
+                        ABOUT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" aria-current="page" th:href="@{service}"><i class="fas fa-paw"></i> SERVICES</a>
+                    <a class="nav-link px-3" aria-current="page" th:href="@{service}"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/service' ? 'active':''}"><i
+                            class="fas fa-paw"></i>
+                        SERVICES</a>
                 </li>
 
 
 
                 <div sec:authorize="isAnonymous()">
                     <li class="nav-item">
-                        <a class="nav-link px-3" aria-current="page" th:href="@{form-login}"><i class="fas fa-paw"></i> LOGIN</a>
+                        <a class="nav-link px-3" aria-current="page" th:href="@{form-login}"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/form-login' ? 'active':''}"><i
+                                class="fas fa-paw"></i> LOGIN</a>
                     </li>
                 </div>
 
                 <div sec:authorize="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link px-3" aria-current="page" th:href="@{form-upload-product}"><i class="fas fa-paw"></i> UPLOAD</a>
+                        <a class="nav-link px-3" aria-current="page" th:href="@{form-upload-product}"
+                           th:classappend="${#httpServletRequest.getRequestURI() == '/form-upload-product' ? 'active':''}"><i
+                                class="fas fa-paw"></i> UPLOAD</a>
                     </li>
                 </div>
 
