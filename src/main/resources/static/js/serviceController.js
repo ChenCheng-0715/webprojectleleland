@@ -56,6 +56,7 @@ class Service {
                 console.log(response.status);
                 if (response.ok) {
                     alert("Successfully Added Service!")}
+                service.showService();
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -217,7 +218,8 @@ function deleteService(id) {
             if (response.ok) {
                 alert("Successful Delete");
             }
-            window.location.reload();
+            service.showService();
+            //window.location.reload();
         })
         .catch((error) => {
             console.log('Error:', error);
@@ -278,8 +280,9 @@ function updateService(id) {
         .then(function(response) {
             console.log(response.status);
             if (response.ok) {
-                alert("Successfully Updated Service!")}
-            window.location.reload();
+                alert("Successfully Updated Service!")};
+            service.showService();
+            //window.location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);
