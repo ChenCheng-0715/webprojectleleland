@@ -25,7 +25,15 @@ function displayServiceDetails(item){
 } //End of displayServiceDetails function
 
 
+function displayUpdateDetails(item){
 
+    document.getElementById('updateItemNameInput').value = item.name;
+    document.getElementById('updateItemDescription').value = item.description;
+    document.getElementById('updateServiceImg').src = item.imageUrl;
+    document.getElementById('updateItemPrice').value = item.price;
+    document.getElementById('updateServiceId').innerText = item.id;
+
+} //End of displayUpdateDetails function
 
 class Service {
 
@@ -64,7 +72,38 @@ class Service {
             });
     }
 
+    updateService(id, name, description, imageUrl, price, imageObject) {
 
+        let service = this;
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('description', description);
+        //console.log(imageObject);
+        //if (imageObject != null) {
+            formData.append('imageFile', imageObject);
+        //}
+        formData.append('price', price);
+        formData.append('imageUrl', imageUrl);
+
+            const updateUrl = "https://lelelandccversion.herokuapp.com/item/" + id;
+            fetch(updateUrl, {
+                method: 'PATCH',
+                body: formData
+                })
+                .then(function(response) {
+                    console.log(response.status);
+                    if (response.ok) {
+                        alert("Successfully Updated Service!");
+                    }
+                    service.showService();
+                    //window.location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("Error updating service!")
+                });
+
+    }
 
     displayService() {
 
@@ -197,7 +236,10 @@ class Service {
             document.querySelector(`#${deleteBtnId}`).
                     addEventListener("click", function(){deleteService(item.id);});
             document.querySelector(`#${updateBtnId}`).
-                                addEventListener("click", function(){updateService(item.id);});
+                                addEventListener("click", function(){
+                                displayUpdateDetails(item);
+                                //updateService(item);
+                                });
             index++;
         }
     }
@@ -225,69 +267,4 @@ function deleteService(id) {
             console.log('Error:', error);
             alert("Error delete");
         });
-}
-
-function updateService(id) {
-
-    const input1 = document.querySelector('#updateItemImageFile');
-    input1.addEventListener('change', () => {
-        storeImage = input1.files[0];
-            console.log(storeImage);
-
-        if (storeImage != null) {
-            if (storeImage.size > max_size) {
-                document.querySelector('#updateItemImageFile').setCustomValidity("File must not exceed 1MB!");
-                document.querySelector('#updateItemImageFile').reportValidity();
-            } else {
-                document.querySelector('#updateItemImageFile').setCustomValidity("");
-                document.querySelector('#updateItemImageFile').reportValidity();
-            }
-        }
-    });
-
-    updateItemForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        console.log(storeImage);
-
-        const updateItemNameInput = document.querySelector('#updateItemNameInput');
-        const updateItemDescription = document.querySelector('#updateItemDescription');
-        const updateItemImageUrl = document.querySelector('#updateItemImageFile');
-        const updateItemPrice = document.querySelector('#updateItemPrice');
-
-        const name = updateItemNameInput.value;
-        const description = updateItemDescription.value;
-        const imageUrl = updateItemImageUrl.value.replace("C:\\fakepath\\", "");
-        const price = updateItemPrice.value;
-
-        updateItemNameInput.value = '';
-        updateItemDescription.value = '';
-        updateItemImageUrl.value = '';
-        updateItemPrice.value = '';
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('description', description);
-    formData.append('imageUrl', imageUrl);
-    formData.append('price', price);
-    formData.append('imageFile', storeImage);
-
-    const updateUrl = "https://lelelandccversion.herokuapp.com/item/" + id;
-    fetch(updateUrl, {
-        method: 'PUT',
-        body: formData
-        })
-        .then(function(response) {
-            console.log(response.status);
-            if (response.ok) {
-                alert("Successfully Updated Service!")};
-            service.showService();
-            //window.location.reload();
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert("Error updating service!")
-        });
-
-    });
 }

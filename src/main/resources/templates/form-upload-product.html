@@ -150,9 +150,20 @@
                     </div>
                     <div class="modal-body d-flex justify-content-center align-items-center">
 
+                        <!-- left side main bg pic -->
+                        <div class="col-lg-6">
+                            <img id="updateServiceImg" src="./images/dog-01-sq.jpg" class="img-fluid" alt="Dog">
+
+
+                        </div>
+
+                        <!-- right side upload panel -->
+                        <div class="col-lg-6">
+                            <!-- form -->
                         <form id="updateItemForm" enctype="multipart/form-data" class="m-3">
 
                             <!-- service input -->
+                            <h5 id="updateServiceId"></h5>
                             <div class="mb-3">
                                 <label for="updateItemNameInput" class="form-label">Service Name :</label>
                                 <input type="text" class="form-control" id="updateItemNameInput" required>
@@ -168,7 +179,7 @@
                             <!-- file input -->
                             <div class="mb-3">
                                 <label for="updateItemImageFile" class="form-label">Upload Image :</label>
-                                <input class="form-control" type="file" id="updateItemImageFile" accept="image/*" required>
+                                <input class="form-control" type="file" id="updateItemImageFile" accept="image/*">
                             </div>
 
                             <div class="mb-3">
@@ -183,6 +194,7 @@
                             <button type="reset" class="btn btn-outline-secondary" value="Reset Form">Clear</button>
 
                         </form>
+                        </div>
                     </div>
 
                 </div>

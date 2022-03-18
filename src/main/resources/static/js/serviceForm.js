@@ -1,5 +1,6 @@
 const service = new Service();
 let storeImage = "";  //actual image file
+let storeImage1 = "";
 const max_size = 1*1024*1024;  // 1MB
 
 
@@ -60,6 +61,57 @@ newItemForm.addEventListener('submit', (event) => {
 
 });
 
+const input1 = document.querySelector('#updateItemImageFile');
+    input1.addEventListener('change', () => {
+        storeImage1 = input1.files[0];
+            console.log(storeImage1);
+
+        if (storeImage1 != null) {
+            if (storeImage1.size > max_size) {
+                document.querySelector('#updateItemImageFile').setCustomValidity("File must not exceed 1MB!");
+                document.querySelector('#updateItemImageFile').reportValidity();
+            } else {
+                document.querySelector('#updateItemImageFile').setCustomValidity("");
+                document.querySelector('#updateItemImageFile').reportValidity();
+            }
+        }
+    });
+
+updateItemForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    //console.log(storeImage);
+
+    const updateItemNameInput = document.querySelector('#updateItemNameInput');
+    const updateItemDescription = document.querySelector('#updateItemDescription');
+    const updateItemPrice = document.querySelector('#updateItemPrice');
+    const updateItemId = document.querySelector('#updateServiceId');
+    let updateItemImageUrl;
+
+    const name = updateItemNameInput.value;
+    const description = updateItemDescription.value;
+    const price = updateItemPrice.value;
+    const id = updateItemId.innerText;
+
+    if (input1.files[0] == null) {
+        updateItemImageUrl = document.querySelector('#updateServiceImg').src;
+        imageUrl = updateItemImageUrl.substring(updateItemImageUrl.lastIndexOf('/')+1);
+    }
+    else {
+        updateItemImageUrl = document.querySelector('#updateItemImageFile');
+        imageUrl = updateItemImageUrl.value.replace("C:\\fakepath\\", "");
+    }
+
+    console.log(imageUrl);
+
+    updateItemNameInput.value = '';
+    updateItemDescription.value = '';
+    updateItemImageUrl.value = '';
+    updateItemPrice.value = '';
+
+    service.updateService(id, name, description, imageUrl, price, storeImage1);
+
+});
 
 function loadTable() {
 
