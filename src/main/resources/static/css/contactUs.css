@@ -20,10 +20,15 @@ p {
 }
 
 #contact {
-    margin: 5rem;
+    margin: auto;
     text-align: center;
     display: flex;
     justify-content: space-evenly;
+}
+
+#contactContent {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
 #services > p {
