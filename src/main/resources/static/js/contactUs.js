@@ -13,11 +13,11 @@ const userMessages = [];
 function submitMessage() {
 // Create variables to store the input value from form.
     const username = document.querySelector("#username").value;
-    const email = document.querySelector("#eMail").value;
+    const email = document.querySelector("#email").value;
     const enquiryType = document.querySelector("#enquiryType").value;
     const message = document.querySelector("#textarea").value;
 
-    const offMessage = setTimeout(alertMessage, 3000);
+    // const offMessage = setTimeout(alertMessage, 3000);
 
     // if (username.length == 0 || email.length == 0 || enquiryType.length == 0 || message.length == 0) {
     //     document.querySelector("#alert").style.display = "block";
