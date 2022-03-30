@@ -41,6 +41,7 @@ function submitMessage() {
     document.querySelector("#email").value = "";
     document.querySelector("#enquiryType").value = "";
     document.querySelector("#textarea").value = "";
+    document.querySelector("#charNum").innerHTML = 200;
 
 
 }
