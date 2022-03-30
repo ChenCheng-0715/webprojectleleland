@@ -36,8 +36,14 @@ function submitMessage() {
     console.log(userMessages);
 
     alert("Your message had sent successfully.");
+    
+    document.querySelector("#username").value = "";
+    document.querySelector("#email").value = "";
+    document.querySelector("#enquiryType").value = "";
+    document.querySelector("#textarea").value = "";
 
-    }
+
+}
 
 // function alertMessage() {
 //     document.querySelector("#alert").style.display = "none";
