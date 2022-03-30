@@ -251,20 +251,22 @@ class Service {
 
 function deleteService(id) {
 
-    let deleteUrl = "https://lelelandccversion.herokuapp.com/item/" + id;
-    fetch(deleteUrl, {
-        method: 'DELETE',
-        })
-        .then(function(response) {
-            console.log(response.status);
-            if (response.ok) {
-                alert("Successful Delete");
-            }
-            service.showService();
-            //window.location.reload();
-        })
-        .catch((error) => {
-            console.log('Error:', error);
-            alert("Error delete");
-        });
+    if (confirm("Are you sure to DELETE this service ?")) {
+        let deleteUrl = "https://lelelandccversion.herokuapp.com/item/" + id;
+        fetch(deleteUrl, {
+            method: 'DELETE',
+            })
+            .then(function(response) {
+                console.log(response.status);
+                if (response.ok) {
+                    alert("Successful Delete");
+                }
+                service.showService();
+                //window.location.reload();
+            })
+            .catch((error) => {
+                console.log('Error:', error);
+                alert("Error delete");
+            });
+    }
 }
